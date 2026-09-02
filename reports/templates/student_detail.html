@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ student.first_name }} - Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+    <a href="{% url 'report_list' %}" class="btn btn-secondary btn-sm mb-3">← Back to Reports</a>
+    <h2>{{ student.first_name }} {{ student.last_name }} ({{ student.roll_number }})</h2>
+    <p><strong>Class:</strong> {{ student.student_class }} | <strong>Attendance:</strong> {{ attendance_pct }}% | <strong>Average Marks:</strong> {{ avg_marks }}</p>
+
+    <h4 class="mt-4">Results</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Subject</th><th>Exam Type</th><th>Marks</th><th>Max Marks</th></tr></thead>
+        <tbody>
+            {% for r in results %}
+            <tr><td>{{ r.subject }}</td><td>{{ r.get_exam_type_display }}</td><td>{{ r.marks_obtained }}</td><td>{{ r.max_marks }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h4 class="mt-4">Attendance History</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Date</th><th>Status</th></tr></thead>
+        <tbody>
+            {% for a in attendance_records %}
+            <tr><td>{{ a.date }}</td><td>{{ a.get_status_display }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

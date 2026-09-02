@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Performance Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+    <h2>Student Performance Reports</h2>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Attendance %</th>
+                <th>Average Marks</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in report_data %}
+            <tr>
+                <td>{{ entry.student.roll_number }}</td>
+                <td>{{ entry.student.first_name }} {{ entry.student.last_name }}</td>
+                <td>{{ entry.student.student_class }}</td>
+                <td>{{ entry.attendance_pct }}%</td>
+                <td>{{ entry.avg_marks }}</td>
+                <td><a href="{% url 'student_report_detail' entry.student.id %}" class="btn btn-sm btn-primary">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
