@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'attendance',
     'results',
     'reports',
+    'home',
 ]
 
 MIDDLEWARE = [
